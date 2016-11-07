@@ -3,6 +3,8 @@
 > A SAP HANA Cloud Platform Extension of SuccessFactors Time Off requests process,
 integrated with calendar providers.
 
+[![Build Status](https://travis-ci.org/SAP/cloud-sfsf-timeoff-ext.svg?branch=master)](https://travis-ci.org/SAP/cloud-sfsf-timeoff-ext)
+
 ## Introduction
 
 The focus of this example is to demonstrate the integration of SuccessFactors
