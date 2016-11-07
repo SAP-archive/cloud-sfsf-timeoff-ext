@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="NotifyImplService" targetNamespace="http://notification.event.successfactors.com" xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:wsp="http://www.w3.org/ns/wspolicy" xmlns:tns="http://notification.event.successfactors.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurityutility-1.0.xsd">
+  <types>
+    <xs:schema version="1.0" targetNamespace="http://notification.event.successfactors.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="ExternalEvent" type="tns:ExternalEvent" />
+      <xs:element name="ExternalEventResponse" type="tns:ExternalEventResponse" />
+      <xs:complexType name="ExternalEvent">
+        <xs:sequence>
+          <xs:element name="externalEventMeta" type="tns:eenAlertRequestMeta" form="qualified" minOccurs="0" />
+          <xs:element name="events" type="tns:events" form="qualified" minOccurs="0" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="eenAlertRequestMeta">
+        <xs:sequence>
+          <xs:element name="externalEventId" type="xs:string" form="qualified" minOccurs="0" />
+          <xs:element name="type" type="xs:string" form="qualified" minOccurs="0" />
+          <xs:element name="publishedAt" type="xs:string" form="qualified" minOccurs="0" />
+          <xs:element name="publishedBy" type="xs:string" form="qualified" minOccurs="0" />
+          <xs:element name="effective" type="xs:string" form="qualified" minOccurs="0" />
+          <xs:element name="repost" type="xs:boolean" form="qualified" minOccurs="0" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="events">
+        <xs:sequence>
+          <xs:element name="event" type="tns:eenAlertRequestData" form="qualified" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="eenAlertRequestData">
+        <xs:sequence>
+          <xs:element name="eventId" type="xs:string" form="qualified" minOccurs="0" />
+          <xs:element name="entityType" type="xs:string" form="qualified" minOccurs="0" />
+          <xs:element name="effectiveStartDate" type="xs:string" form="qualified" minOccurs="0" />
+          <xs:element name="publishedAt" type="xs:long" form="qualified" minOccurs="0" />
+          <xs:element name="publishedBy" type="xs:string" form="qualified" minOccurs="0" />
+          <xs:element name="repost" type="xs:boolean" form="qualified" minOccurs="0" />
+          <xs:element name="entityKeys" form="qualified" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="entityKey" type="tns:param" form="qualified" minOccurs="0" maxOccurs="unbounded" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="params" form="qualified" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="param" type="tns:param" form="qualified" minOccurs="0" maxOccurs="unbounded" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="eventPayload" type="xs:anyType" form="qualified" minOccurs="0" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="param">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string" minOccurs="0" />
+          <xs:element name="value" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ExternalEventResponse">
+        <xs:sequence>
+          <xs:element name="responsePayload" type="tns:eenAlertResponsePayload" form="qualified" minOccurs="0" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="eenAlertResponsePayload">
+        <xs:sequence>
+          <xs:element name="entityId" type="xs:string" form="qualified" minOccurs="0" />
+          <xs:element name="errorCode" type="xs:string" form="qualified" minOccurs="0" />
+          <xs:element name="errorMessage" type="xs:string" form="qualified" minOccurs="0" />
+          <xs:element name="status" type="xs:int" form="qualified" minOccurs="0" />
+          <xs:element name="statusDate" type="xs:dateTime" form="qualified" minOccurs="0" />
+          <xs:element name="statusDetails" type="xs:string" form="qualified" minOccurs="0" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="ExternalEvent">
+    <part name="parameters" element="tns:ExternalEvent" />
+  </message>
+  <message name="ExternalEventResponse">
+    <part name="parameters" element="tns:ExternalEventResponse" />
+  </message>
+  <portType name="INotify">
+    <operation name="ExternalEvent">
+      <input wsam:Action="http://notification.event.successfactors.com/INotify/ExternalEventRequest" message="tns:ExternalEvent" />
+      <output wsam:Action="http://notification.event.successfactors.com/INotify/ExternalEventResponse" message="tns:ExternalEventResponse" />
+    </operation>
+  </portType>
+  <binding name="NotifyImplPortBinding" type="tns:INotify">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="ExternalEvent">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="NotifyImplService">
+    <port name="NotifyImplPort" binding="tns:NotifyImplPortBinding">
+      <soap:address location="REPLACE_WITH_ACTUAL_URL" />
+    </port>
+  </service>
+</definitions>

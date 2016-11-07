@@ -1,0 +1,53 @@
+{
+  "d": {
+    "__metadata": {
+      "uri": "https://apisalesdemo4.successfactors.com:443/odata/v2/EmployeeTime('12345')",
+      "type": "SFOData.EmployeeTime"
+    },
+    "externalCode": "12345",
+    "startDate": "/Date(1464566400000)/",
+    "userId": "12345",
+    "approvalStatus": "APPROVED",
+    "createdDateTime": "/Date(1462959614000+0000)/",
+    "endDate": "/Date(1464652800000)/",
+    "lastModifiedDateTime": "/Date(1462959614000+0000)/",
+    "comment": null,
+    "timeType": "LOATT",
+    "userIdNav": {
+      "__metadata": {
+        "uri": "https://apisalesdemo4.successfactors.com:443/odata/v2/User('12345')",
+        "type": "SFOData.User"
+      },
+      "lastName": "test-lastname",
+      "email": "test@test.com",
+      "timeZone": "US/Eastern",
+      "firstName": "test-firstname",
+      "empInfo": {
+        "__metadata": {
+          "uri": "https://apisalesdemo4.successfactors.com:443/odata/v2/EmpEmployment(personIdExternal='12345',userId='12345')",
+          "type": "SFOData.EmpEmployment"
+        },
+        "jobInfoNav": {
+          "results": [
+            {
+              "__metadata": {
+                "uri": "https://apisalesdemo4.successfactors.com:443/odata/v2/EmpJob(seqNumber=1L,startDate=datetime'2013-02-26T00:00:00',userId='12345')",
+                "type": "SFOData.EmpJob"
+              },
+              "timezone": "US/Eastern",
+              "managerUserNav": {
+                "__metadata": {
+                  "uri": "https://apisalesdemo4.successfactors.com:443/odata/v2/User('12345')",
+                  "type": "SFOData.User"
+                },
+                "lastName": "test-manager-lastname",
+                "email": "test-manager@test.com",
+                "firstName": "test-manager-firstname"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

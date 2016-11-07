@@ -1,0 +1,7 @@
+Name=sap_hcmcloud_core_odata
+Description=SuccessFactors Core OData API
+ProxyType=Internet
+Type=HTTP
+URL=https://apisalesdemo4.successfactors.com:443/odata/v2
+Authentication=BasicAuthentication
+TrustAll=true

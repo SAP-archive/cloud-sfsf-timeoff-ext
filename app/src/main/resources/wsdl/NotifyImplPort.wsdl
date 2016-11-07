@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="NotifyImplService" targetNamespace="com.successfactors.event.notification" xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:tns="com.successfactors.event.notification" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wsswssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <types>
+    <xs:schema targetNamespace="com.successfactors.event.notification" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="ExternalEvent" type="tns:ExternalEvent" />
+      <xs:element name="ExternalEventResponse" type="tns:ExternalEventResponse" />
+      <xs:complexType name="ExternalEvent">
+        <xs:sequence>
+          <xs:element form="qualified" minOccurs="0" name="externalEventMeta" type="tns:eenAlertRequestMeta" />
+          <xs:element form="qualified" minOccurs="0" name="events" type="tns:events" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="eenAlertRequestMeta">
+        <xs:sequence>
+          <xs:element form="qualified" minOccurs="0" name="externalEventId" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="sourceArea" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="proxyUserID" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="publishedAt" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="publishedBy" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="isEffectiveDated" type="xs:boolean" />
+          <xs:element form="qualified" minOccurs="0" name="effectiveStartDate" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="validity" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="postFromTransaction" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="events">
+        <xs:sequence>
+          <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="event" type="tns:eenAlertRequestData" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="eenAlertRequestData">
+        <xs:sequence>
+          <xs:element form="qualified" minOccurs="0" name="eventId" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="entity" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="type" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="isEffectiveDated" type="xs:boolean" />
+          <xs:element form="qualified" minOccurs="0" name="effectiveStartDate" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="publishedAt" type="xs:long" />
+          <xs:element form="qualified" minOccurs="0" name="publishedBy" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="validity" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="processId" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="postFromTransaction" type="xs:boolean" />
+          <xs:element form="qualified" minOccurs="0" name="entityKeys">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="entityKey" type="tns:param" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element form="qualified" minOccurs="0" name="params">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="param" type="tns:param" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element form="qualified" minOccurs="0" name="eventPayload" type="xs:anyType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="param">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+          <xs:element minOccurs="0" name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ExternalEventResponse">
+        <xs:sequence>
+          <xs:element form="qualified" minOccurs="0" name="responsePayload" type="tns:eenAlertResponsePayload" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="eenAlertResponsePayload">
+        <xs:sequence>
+          <xs:element form="qualified" minOccurs="0" name="entityId" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="errorCode" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="errorMessage" type="xs:string" />
+          <xs:element form="qualified" minOccurs="0" name="status" type="xs:int" />
+          <xs:element form="qualified" minOccurs="0" name="statusDate" type="xs:dateTime" />
+          <xs:element form="qualified" minOccurs="0" name="statusDetails" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="ExternalEvent">
+    <part name="parameters" element="tns:ExternalEvent">
+    </part>
+  </message>
+  <message name="ExternalEventResponse">
+    <part name="parameters" element="tns:ExternalEventResponse">
+    </part>
+  </message>
+  <portType name="INotify">
+    <operation name="ExternalEvent">
+      <input message="tns:ExternalEvent" wsam:Action="com.successfactors.event.notification/INotify/ ExternalEventRequest">
+      </input>
+      <output message="tns:ExternalEventResponse" wsam:Action="com.successfactors.event.notification/INotify/ ExternalEventResponse">
+      </output>
+    </operation>
+  </portType>
+  <binding name="NotifyImplPortBinding" type="tns:INotify">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="ExternalEvent">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+
+  <service name="NotifyImplService">
+    <port name="NotifyImplPort" binding="tns:NotifyImplPortBinding">
+      <soap:address location="http://localhost:8080/IntelligentServicesSample/services/NotifyImplPort2" />
+    </port>
+  </service>
+</definitions>

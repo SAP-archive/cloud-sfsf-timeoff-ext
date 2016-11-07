@@ -1,0 +1,21 @@
+.sapMTB > span, .sapMLnk, .sapMLabel {
+  font-size: 1rem;
+}
+.sapMTB, .sapUiBodyBackground, .sapUiBody, .sapUiGlobalBackgroundColor, .sapMGlobalBackgroundColor {
+  background-color: #fff;
+  background-image: none;
+}
+.eventSubject {
+  font-weight:bold;
+  font-size: 1.15rem;
+}
+
+.sapMTBShrinkItem {
+  min-width: 0;
+}
+.event-count {
+  font-weight: bold !important;
+}
+.sapMLabel {
+    font-size: 0.9rem;
+}
