@@ -27,9 +27,7 @@
   <modules>
     <module>frontend</module>
     <module>notification-service</module>
-    <module>app</module>
     <module>commons</module>
-    <module>google</module>
   </modules>
 
   <build>
