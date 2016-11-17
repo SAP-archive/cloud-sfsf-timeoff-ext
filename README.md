@@ -122,7 +122,7 @@ controller logic implemented in [app](#app) and concrete implementations,
 in this case Google GMail and Calendar. It declares the actions and queries on
 which the application business logic is built.
 
-For more information, see the [documentation](google/README).
+For more information, see the [documentation](google/README.md).
 
 ### frontend
 
