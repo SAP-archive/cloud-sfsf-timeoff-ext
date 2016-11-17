@@ -22,7 +22,7 @@ To create a Google API Console project, you need a client ID and a client secret
 1. Select _Web application_ as an application type.
 1. Enter *https://[YOUR APPLICATION URL]/login/google* in the _Authorized redirect URIs_ field. Choose _Create_.
 1. From the OAuth client dialog box that appears, copy the client ID and the client secret.
-1. In the SAP HANA Cloud Platform Cockpit, create a new destination with name `google_auth`.
+1. In the SAP HANA Cloud Platform Cockpit, create a new destination with name `google_oauth`.
 
 	     Name: google_auth
 	     Type: HTTP
