@@ -27,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.common.exceptions.UnauthorizedUserException;
 import org.springframework.stereotype.Component;
 
 /**
@@ -66,10 +67,13 @@ public class GoogleService {
   }
 
   private Credential getCredential(final String userId) {
-    final OAuth2AccessToken accessToken = credService.getAccessToken(userId);
+    final OAuth2AccessToken accessToken = credService.getAccessToken(userId).orElseThrow(() -> {
+      final String error = MessageFormat.format("User [{0}] not authenticated with GMail", userId);
+      return new UnauthorizedUserException(error);
+    });
 
-    return new GoogleCredential().setAccessToken(accessToken.getValue())
-        .setRefreshToken(accessToken.getRefreshToken().getValue());
+    return new GoogleCredential().setAccessToken(accessToken.getValue());
+        //.setRefreshToken(accessToken.getRefreshToken().getValue())
   }
 
 }

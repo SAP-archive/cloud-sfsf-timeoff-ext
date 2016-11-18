@@ -122,7 +122,7 @@ public class GoogleAuthConfig extends WebSecurityConfigurerAdapter {
       @Override
       public OAuth2AccessToken getAccessToken(final OAuth2ProtectedResourceDetails resource,
           final Authentication authentication) {
-        return gcs.getAccessToken(req.getRemoteUser());
+        return gcs.getAccessToken(req.getRemoteUser()).orElse(null);
 
       }
     };

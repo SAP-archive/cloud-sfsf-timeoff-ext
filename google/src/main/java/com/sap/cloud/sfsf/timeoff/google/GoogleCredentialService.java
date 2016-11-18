@@ -13,6 +13,8 @@
  */
 package com.sap.cloud.sfsf.timeoff.google;
 
+import java.util.Optional;
+
 import org.ehcache.impl.internal.concurrent.ConcurrentHashMap;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.stereotype.Service;
@@ -38,8 +40,8 @@ public class GoogleCredentialService {
 
   }
 
-  public OAuth2AccessToken getAccessToken(final String user) {
-    return tokens.get(user);
+  public Optional<OAuth2AccessToken> getAccessToken(final String user) {
+    return Optional.ofNullable(tokens.get(user));
 
   }
 }

@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.FieldError;
@@ -32,6 +34,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 @Component
 public class GlobalExceptionHandler {
+
+    final Logger logger = LoggerFactory.getLogger(getClass());
 
     @ExceptionHandler
     @ResponseBody
@@ -58,6 +62,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Map<?, ?> handle(final RuntimeException exception) {
+        logger.error("Unhandled exception", exception);
         return error(exception.getMessage());
     }
 
