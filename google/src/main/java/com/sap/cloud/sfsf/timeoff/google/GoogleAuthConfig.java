@@ -163,8 +163,8 @@ public class GoogleAuthConfig extends WebSecurityConfigurerAdapter {
     props.setAccessTokenUri("https://www.googleapis.com/oauth2/v3/token");
     props.setUserAuthorizationUri("https://accounts.google.com/o/oauth2/auth?access_type=offline");
     props.setClientAuthenticationScheme(AuthenticationScheme.form);
-    props
-        .setScope(Arrays.asList("https://www.googleapis.com/auth/calendar", "https://www.googleapis.com/auth/plus.me"));
+    props.setScope(Arrays.asList("https://www.googleapis.com/auth/calendar", "https://www.googleapis.com/auth/plus.me",
+        "https://www.googleapis.com/auth/gmail.settings.basic"));
 
     return props;
   }
