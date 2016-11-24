@@ -87,6 +87,9 @@ public class GoogleAuthConfig extends WebSecurityConfigurerAdapter {
                 .authenticated().and()
                 .formLogin().loginPage(GOOGLE_LOGIN_PATH)
                 .and()
+                .headers()
+                  .frameOptions().disable()
+                .and()
                 .addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
         // @formatter:on
   }
